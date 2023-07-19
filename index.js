@@ -4,16 +4,15 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const {StatusCodes} = require('http-status-codes');
 
-
-const port = 5000;
-
-mongoose.connect('mongodb://127.0.0.1/blog');
-
 const app = express();
 app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
 
+require('dotenv').config();
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const port = process.env.PORT || 5000;
 
 
 app.use('/', blogRoute);
