@@ -9,7 +9,7 @@ const server = createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://api-blog-v7sl.onrender.com",
         methods: ["GET", "POST", "DELETE", "PATCH"],
       }
 });
