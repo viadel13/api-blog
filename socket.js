@@ -39,11 +39,11 @@ io.on("connection", (socket) => {
 
 
 require('dotenv').config();
+const port = process.env.SOCKET_PORT;
 
-
-//accepte la connexion des clients sur le port  30001
-server.listen(5000, () => {
-    console.log('Serveur de socket.io démarré sur le port 5000');
+//accepte la connexion des clients sur le port  3000
+server.listen(port, () => {
+    console.log('Serveur de socket.io démarré sur le port', port);
 });
 
 
