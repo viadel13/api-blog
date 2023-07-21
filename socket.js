@@ -7,24 +7,9 @@ app.use(cors());
 
 const server = createServer(app); 
 
-// const io = new Server(server, {
-//     cors: {
-//         origin: "http://localhost:3000",
-//         methods: ["GET", "POST", "DELETE", "PATCH"],
-//       }
-// });
-
-// io.on("connection", (socket) => {
-//     console.log('client est connecté : ', socket.id);
-    
-//     socket.on("disconnect", ()=>{
-//         console.log("Client deconnecte : ", socket.id)
-//     })
-// });
-
 const io = new Server(server, {
     cors: {
-        origin: "https://startup-api-sigma.vercel.app",
+        origin: "http://localhost:3000",
         methods: ["GET", "POST", "DELETE", "PATCH"],
       }
 });
@@ -37,11 +22,30 @@ io.on("connection", (socket) => {
     })
 });
 
+// const io = new Server(server, {
+//     cors: {
+//         origin: "https://startup-api-sigma.vercel.app",
+//         methods: ["GET", "POST", "DELETE", "PATCH"],
+//       }
+// });
+
+// io.on("connection", (socket) => {
+//     console.log('client est connecté : ', socket.id);
+    
+//     socket.on("disconnect", ()=>{
+//         console.log("Client deconnecte : ", socket.id)
+//     })
+// });
+
 
 require('dotenv').config();
 const port = process.env.SOCKET_PORT;
 
-//accepte la connexion des clients sur le port  3000
+app.get('/', (req, res)=>{
+    res.send('bienvenu dans le serveur socket');
+})
+
+//accepte la connexion des clients sur le port  3001
 server.listen(port, () => {
     console.log('Serveur de socket.io démarré sur le port', port);
 });
