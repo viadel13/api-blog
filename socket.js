@@ -39,7 +39,7 @@ io.on("connection", (socket) => {
 
 
 require('dotenv').config();
-const port = process.env.SOCKET_PORT;
+const port = process.env.SOCKET_PORT || 3001;
 
 app.get('/', (req, res)=>{
     res.send('bienvenu dans le serveur socket');
