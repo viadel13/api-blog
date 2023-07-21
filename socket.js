@@ -1,4 +1,7 @@
-// const io = require('socket.io')(3001,{
+require('dotenv').config();
+const port = process.env.PORT || 3001;
+
+// const io = require('socket.io')(port,{
 
 //     cors: {
 //         origin: "http://localhost:3000",
@@ -7,7 +10,7 @@
 
 // }) 
 
-const io = require('socket.io')(3001,{
+const io = require('socket.io')(port,{
 
     cors: {
         origin: "https://startup-api-sigma.vercel.app",

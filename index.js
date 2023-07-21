@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const {StatusCodes} = require('http-status-codes');
 const app = express();
-const port = process.env.PORT || 5000;
 
 
 
@@ -15,7 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 
 
 require('dotenv').config();
-mongoose.connect(process.env.MONGODB_URI);
+const port = process.env.PORT || 5000;
+mongoose.connect(process.env.MONGODB_LOCAL);
 
 
 
