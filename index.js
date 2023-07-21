@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 require('dotenv').config();
 const port = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGODB_LOCAL);
+mongoose.connect(process.env.MONGODB_URI);
 
 
 

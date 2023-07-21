@@ -1,5 +1,5 @@
 require('dotenv').config();
-const port = process.env.PORT || 3001;
+const port = process.env.SOCKET_PORT || 3001;
 
 // const io = require('socket.io')(port,{
 
