@@ -43,7 +43,7 @@ require('dotenv').config();
 
 //accepte la connexion des clients sur le port  30001
 server.listen(3000, () => {
-    console.log('Serveur de socket.io démarré sur le port 300');
+    console.log('Serveur de socket.io démarré sur le port 3000');
 });
 
 
