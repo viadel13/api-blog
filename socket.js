@@ -7,24 +7,9 @@ app.use(cors());
 
 const server = createServer(app); 
 
-const io = new Server(server, {
-    cors: {
-        origin: "https://api-blog-v7sl.onrender.com",
-        methods: ["GET", "POST", "DELETE", "PATCH"],
-      }
-});
-
-io.on("connection", (socket) => {
-    console.log('client est connecté : ', socket.id);
-    
-    socket.on("disconnect", ()=>{
-        console.log("Client deconnecte : ", socket.id)
-    })
-});
-
 // const io = new Server(server, {
 //     cors: {
-//         origin: "https://startup-api-sigma.vercel.app",
+//         origin: "http://localhost:3000",
 //         methods: ["GET", "POST", "DELETE", "PATCH"],
 //       }
 // });
@@ -36,6 +21,21 @@ io.on("connection", (socket) => {
 //         console.log("Client deconnecte : ", socket.id)
 //     })
 // });
+
+const io = new Server(server, {
+    cors: {
+        origin: "https://startup-api-sigma.vercel.app",
+        methods: ["GET", "POST", "DELETE", "PATCH"],
+      }
+});
+
+io.on("connection", (socket) => {
+    console.log('client est connecté : ', socket.id);
+    
+    socket.on("disconnect", ()=>{
+        console.log("Client deconnecte : ", socket.id)
+    })
+});
 
 
 require('dotenv').config();
