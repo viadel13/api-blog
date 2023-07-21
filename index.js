@@ -7,7 +7,11 @@ const app = express();
 
 
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://startup-api-sigma.vercel.app',
+    methods: ['GET', 'POST'],
+  }));
+  
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
 
