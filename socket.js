@@ -24,7 +24,7 @@ const server = createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://startup-api-sigma.vercel.app",
         methods: ["GET", "POST", "DELETE", "PATCH"],
       }
 });
