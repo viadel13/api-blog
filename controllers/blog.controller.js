@@ -1,15 +1,15 @@
 const Article = require("../models/Article");
 const { StatusCodes } = require("http-status-codes");
-const io = require("../socket"); 
 
-
-const createArticle = async (req, res) => {
+const createArticle = async (req, res, next) => {
   const articleUser = req.body;
   console.log(articleUser.datas);
   try {
     const article = await Article.create(articleUser.datas);
     // Émettez un événement 'articleAdded' pour informer les clients du nouvel article
+        const io = res.io
     io.emit('articleAdded', article);
+    
     res.send(article);
   } catch (error) {
     res
@@ -75,11 +75,12 @@ const updateArticleById = async (req, res) => {
   }
 };
 
-const deleteArticleById = async (req, res) => {
+const deleteArticleById = async (req, res, next) => {
   const id = req.params.id;
   const article = await Article.findByIdAndDelete(id);
   if (article) {
     res.send(`article ${article} supprimer avec succes`);
+    const io = res.io
     io.emit('articleDel',{ id: article.id, titre: article.titre, });
   } else {
     res.status(StatusCodes.NOT_FOUND).send("Contact introuvable");
