@@ -7,20 +7,22 @@ const createArticle = async (req, res, next) => {
   try {
     const article = await Article.create(articleUser.datas);
     // Émettez un événement 'articleAdded' pour informer les clients du nouvel article
-        const io = res.io
-    io.emit('articleAdded', article);
-    
+
+    const io = res.io;
+    io.emit("articleAdded", article);
+
     res.send(article);
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .send("une erreur est produite");
-      console.log(error);
+    console.log(error);
   }
 };
 
 const getArticle = async (req, res) => {
   const article = await Article.find();
+
   res.send(article);
 };
 
@@ -60,13 +62,15 @@ const getArticleById = async (req, res) => {
   }
 };
 
-const updateArticleById = async (req, res) => {
+const updateArticleById = async (req, res, next) => {
   const id = req.params.id;
+
   try {
-    const articles = await Article.findByIdAndUpdate(id, req.body, {
+    const articles = await Article.findByIdAndUpdate(id, req.body.datas, {
       new: true,
     });
-
+    const io = res.io;
+    io.emit("articleUpdate", articles);
     res.send(articles);
   } catch (error) {
     res
@@ -80,8 +84,8 @@ const deleteArticleById = async (req, res, next) => {
   const article = await Article.findByIdAndDelete(id);
   if (article) {
     res.send(`article ${article} supprimer avec succes`);
-    const io = res.io
-    io.emit('articleDel',{ id: article.id, titre: article.titre, });
+    const io = res.io;
+    io.emit("articleDel", { id: article.id, titre: article.titre });
   } else {
     res.status(StatusCodes.NOT_FOUND).send("Contact introuvable");
   }
