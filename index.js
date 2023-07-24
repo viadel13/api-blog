@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
-    cors: "*"
+    cors: "*",
 })
 
 io.on('connection', (socket) => {
@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
 
 require('dotenv').config();
 const port = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.use((req, res, next)=>{
     res.io = io;
