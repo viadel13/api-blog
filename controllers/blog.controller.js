@@ -28,7 +28,8 @@ const getArticle = async (req, res) => {
 
 const getArticleByCat = async (req, res) => {
   try {
-    const categorie = req.params.cat;
+    const categorie = req.params.cat.toLowerCase();
+
 
     const articles = await Article.find({ categorie });
 
