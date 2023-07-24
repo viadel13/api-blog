@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
-    cors: "*",
+    cors: "*"
 })
 
 io.on('connection', (socket) => {
