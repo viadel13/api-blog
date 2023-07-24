@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
 
 require('dotenv').config();
 const port = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGODB_LOCAL);
+mongoose.connect(process.env.MONGODB_URL);
 
 app.use((req, res, next)=>{
     res.io = io;
