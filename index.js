@@ -20,14 +20,14 @@ const io = new Server(httpServer, {
 })
 
 io.on('connection', (socket) => {
-    console.log('Un client est connecté');
+    // console.log('Un client est connecté');
     /* Ajoutez ici votre logique pour gérer les connexions de socket.io */
 
 });
 
 require('dotenv').config();
 const port = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_LOCAL);
 
 app.use((req, res, next)=>{
     res.io = io;
